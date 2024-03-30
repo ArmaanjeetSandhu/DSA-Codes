@@ -34,16 +34,16 @@ void display(queue *q)
         cout << q->arr[i] << " ";
     cout << endl;
 }
-void enqueue(queue *&q, int val)
+void enqueue(queue *&q, int value)
 {
     if (isFull(q))
     {
-        cout << "Queue full! " << val << " cannot be inserted." << endl;
+        cout << "Queue full! " << value << " cannot be inserted." << endl;
         return;
     }
     if (isEmpty(q))
         q->front++;
-    q->arr[++q->rear] = val;
+    q->arr[++q->rear] = value;
 }
 int dequeue(queue *&q)
 {
@@ -52,12 +52,12 @@ int dequeue(queue *&q)
         cout << "Queue empty! Cannot dequeue element." << endl;
         return -1;
     }
-    int val = q->arr[q->front];
+    int value = q->arr[q->front];
     if (q->front == q->rear)
         q->front = q->rear = -1;
     else
         q->front++;
-    return val;
+    return value;
 }
 void buildQueue(queue *&q)
 {
@@ -102,9 +102,9 @@ bool isEmpty(Node *front, Node *rear)
 {
     return (front == NULL && rear == NULL);
 }
-void enqueue(Node *&front, Node *&rear, int val)
+void enqueue(Node *&front, Node *&rear, int value)
 {
-    Node *nodeToBeInserted = new Node(val);
+    Node *nodeToBeInserted = new Node(value);
     if (isEmpty(front, rear))
         front = rear = nodeToBeInserted;
     else
@@ -128,78 +128,3 @@ void dequeue(Node *&front, Node *&rear)
     temp->next = NULL;
     delete temp;
 }
-
-// While in a queue, elements are inserted to the rear and deleted from the front, in a DE queue, both operations can be performed at either of the sides. Hence, DE queue does not follow FIFO / LILO
-// /*
-// 1. Input-restricted DE queue: Insertion to the front not permitted
-// 2. Output-restricted DE queue: Deletion from the rear not permitted
-// */
-// #include <stdio.h>
-// #include <stdlib.h>
-// struct queue
-// {
-//     int size; // size of array
-//     int f, r;
-//     int *arr;
-// };
-// int isFull(struct queue *q)
-// {
-//     if (q->r == q->size - 1)
-//         return 1;
-//     else
-//         return 0;
-// }
-// void en queueRear(struct queue *q, int val)
-// {
-//     if (isFull(q))
-//         cout << " queue full! " << val << " cannot be inserted";
-//     else
-//     {
-//         q->r++;
-//         q->arr[q->r] = val;
-//     }
-// }
-// void en queueFront(struct queue *q, int val)
-// {
-//     if (isFull(q) && q->f == -1)
-//         cout << " queue full! " << val << " cannot be inserted";
-//     else
-//     {
-//         q->arr[q->f] = val;
-//         q->f--;
-//     }
-// }
-// void de queueFront(struct queue *q)
-// {
-//     int a = -1;
-//     if (q->f == q->r) // condition for  queue to be empty
-//         cout << " queue empty! de queueFront() operation cannot be performed";
-//     else
-//     {
-//         q->f++;
-//         a = q->arr[q->f];
-//     }
-//     return a;
-// }
-// void de queueRear(struct queue *q)
-// {
-//     int a = -1;
-//     if (q->f == q->r) // condition for  queue to be empty
-//         cout << " queue empty! de queueRear() operation cannot be performed";
-//     else
-//     {
-//         a = q->arr[q->r];
-//         q->r--;
-//     }
-//     return a;
-// }
-// int main()
-// {
-//     struct queue q;
-//     q.size = 10;
-//     q.f = q.r = -1;
-//     q.arr = (int *)malloc(q.size * sizeof(int));
-//     en queueRear(&q, 12);
-//     de queueFront(&q);
-//     return 0;
-// }

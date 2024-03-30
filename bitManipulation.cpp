@@ -12,7 +12,6 @@ int setBitsCount1(int n)
     return count;
 }
 int setBitsCount2(int n)
-// counts number of bits that are set, i.e., equal to 1, in the binary representation of n
 // Brian Kernighan's Algorithm (based on the fact that upon subtracting 1 from an integer, the rightmost set bit becomes unset and all bits to its right are flipped)
 {
     int count = 0;
@@ -23,20 +22,7 @@ int setBitsCount2(int n)
     }
     return count;
 }
-// Aliter: __builtin_popcount(int n) also returns the number of set bits in n
-int powerOfTwoCheck(int n)
-// In binary format, every number with only one set bit is a power of 2 (1 being the exception)
-{
-    if (n == 1)
-        return 0;
-    else
-    {
-        if (__builtin_popcount(n) == 1)
-            return 1;
-        else
-            return 0;
-    }
-}
+// ALITER: __builtin_popcount(int n) also returns the number of set bits in n
 void oddOrEven(int n)
 {
     if (n & 1) // The LSB is set if the number is odd

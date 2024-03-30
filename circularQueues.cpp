@@ -21,11 +21,11 @@ bool isFull(queue *q)
 {
     return ((q->front == 0 && q->rear == q->size - 1) || (q->rear == (q->front - 1) % (q->size - 1)));
 }
-void enqueue(queue *&q, int val)
+void enqueue(queue *&q, int value)
 {
     if (isFull(q))
     {
-        cout << "Queue full! " << val << " cannot be inserted." << endl;
+        cout << "Queue full! " << value << " cannot be inserted." << endl;
         return;
     }
     if (isEmpty(q))
@@ -37,7 +37,7 @@ void enqueue(queue *&q, int val)
         q->rear = 0;
     else
         q->rear++;
-    q->arr[q->rear] = val;
+    q->arr[q->rear] = value;
 }
 int dequeue(queue *&q)
 {

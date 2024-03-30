@@ -27,13 +27,12 @@ public:
     heap(int size)
     {
         this->size = size;
-        arr = new int[size];
+        arr = new int[size + 1];
     }
 };
 void insertIntoMaxHeap(heap *&h, int data)
 {
-    h->size++;
-    h->arr[h->size] = data;
+    h->arr[++h->size] = data;
     int current = h->size;
     while (current > 1 && data > h->arr[current / 2])
     {
